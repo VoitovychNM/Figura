@@ -46,15 +46,13 @@ namespace ConsoleFig
     {
         static void Main(string[] args)
         {
-            while(true)
-            {
-                Console.WriteLine("\t***Figura***");
-                Console.WriteLine("1.Rectangle");
-                Console.WriteLine("2.Circle");
-                Console.Write("\nEnter figure nubmer: ");
-                int number = Convert.ToInt32(Console.ReadLine());
-                
-                switch(number)
+            Console.WriteLine("\t***Figura***");
+
+            while (true)
+            {             
+                int number = MainMenu();
+
+                switch (number)
                 {
                     case 1:
                         Console.Clear();
@@ -64,25 +62,34 @@ namespace ConsoleFig
                         Console.Write("Enter height of the rectangle: ");
                         float height = Convert.ToSingle(Console.ReadLine());
                         Rectangle rec1 = new Rectangle(width, height);
-
+                       
                         Console.Clear();
-                        Console.WriteLine("1.Perimeter");
-                        Console.WriteLine("2.Area");
-                        Console.Write("Enter number: ");
-                        int n = Convert.ToInt32(Console.ReadLine());
-                        if(n ==1)
+                        while (true)
                         {
-                            Console.WriteLine($"Perimeter rectangle is {rec1.Perimeter()}");
-                        }
-                        else if(n==2)
-                        {
-                            Console.WriteLine($"Area rectangle is {rec1.Area()}");
-                        }
-                        else
-                        {
-                            Console.WriteLine("\aError");
+                            int n = read();
+                            if (n == 1)
+                            {
+                                Console.ForegroundColor = ConsoleColor.Green;
+                                Console.WriteLine($"Perimeter rectangle is {rec1.Perimeter()}");
+                                Console.ResetColor();
+                                break;
+                            }
+                            else if (n == 2)
+                            {
+                                Console.ForegroundColor = ConsoleColor.Green;
+                                Console.WriteLine($"Area rectangle is {rec1.Area()}");
+                                Console.ResetColor();
+                                break;
+                            }
+                            else
+                            {
+                                Error();
+                                continue;
+                            }
                         }
                         return;
+
+
                     case 2:
                         Console.Clear();
                         Console.WriteLine("\t***Figura***");
@@ -90,28 +97,57 @@ namespace ConsoleFig
                         float radius = Convert.ToSingle(Console.ReadLine());
                         Circle cir1 = new Circle(radius);
 
-                        Console.Clear();
-                        Console.WriteLine("1.length circle");
-                        Console.WriteLine("2.Area circle");
-                        Console.Write("Enter number: ");
-                        int k= Convert.ToInt32(Console.ReadLine());
-                        if (k == 1)
-                        {
-                            Console.WriteLine($"Perimeter rectangle is {cir1.Perimeter()}");
-                        }
-                        else if (k == 2)
-                        {
-                            Console.WriteLine($"Area rectangle is {cir1.Area()}");
-                        }
-                        else
-                        {
-                            Console.WriteLine("\aError");
+                        Console.Clear();                        
+                        while (true)
+                        {                            
+                            int k = read();
+                            if (k == 1)
+                            {
+                                Console.ForegroundColor = ConsoleColor.Green;
+                                Console.WriteLine($"Perimeter rectangle is {cir1.Perimeter()}");
+                                Console.ResetColor();
+                                break;
+                            }
+                            else if (k == 2)
+                            {
+                                Console.ForegroundColor = ConsoleColor.Green;
+                                Console.WriteLine($"Area rectangle is {cir1.Area()}");
+                                Console.ResetColor();
+                                break;
+                            }
+                            else
+                            {
+                                Error();
+                                continue;
+                            }
                         }
                         return;
                     default:
-                        return;
+                        Error();
+                        continue;
 
                 }
+            }
+            int MainMenu()
+            {
+                Console.WriteLine("1.Rectangle");
+                Console.WriteLine("2.Circle");
+                Console.Write("\nEnter figure nubmer: ");
+                return Convert.ToInt32(Console.ReadLine());
+            }
+           
+            int read()
+            {
+                Console.WriteLine("1.Perimeter");
+                Console.WriteLine("2.Area");
+                Console.Write("Enter number: ");
+                return Convert.ToInt32(Console.ReadLine());
+            }
+            void Error()
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("\aError: \"The number should be from 1 to 2\"");
+                Console.ResetColor();
             }
         }
     }
