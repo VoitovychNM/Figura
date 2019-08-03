@@ -1,0 +1,11 @@
+C:\Users\Войтович Назарій\source\repos\ConsoleFig\ConsoleFig\bin\Debug\netcoreapp2.1\ConsoleFig.deps.json
+C:\Users\Войтович Назарій\source\repos\ConsoleFig\ConsoleFig\bin\Debug\netcoreapp2.1\ConsoleFig.runtimeconfig.json
+C:\Users\Войтович Назарій\source\repos\ConsoleFig\ConsoleFig\bin\Debug\netcoreapp2.1\ConsoleFig.runtimeconfig.dev.json
+C:\Users\Войтович Назарій\source\repos\ConsoleFig\ConsoleFig\bin\Debug\netcoreapp2.1\ConsoleFig.dll
+C:\Users\Войтович Назарій\source\repos\ConsoleFig\ConsoleFig\bin\Debug\netcoreapp2.1\ConsoleFig.pdb
+C:\Users\Войтович Назарій\source\repos\ConsoleFig\ConsoleFig\obj\Debug\netcoreapp2.1\ConsoleFig.csprojAssemblyReference.cache
+C:\Users\Войтович Назарій\source\repos\ConsoleFig\ConsoleFig\obj\Debug\netcoreapp2.1\ConsoleFig.csproj.CoreCompileInputs.cache
+C:\Users\Войтович Назарій\source\repos\ConsoleFig\ConsoleFig\obj\Debug\netcoreapp2.1\ConsoleFig.AssemblyInfoInputs.cache
+C:\Users\Войтович Назарій\source\repos\ConsoleFig\ConsoleFig\obj\Debug\netcoreapp2.1\ConsoleFig.AssemblyInfo.cs
+C:\Users\Войтович Назарій\source\repos\ConsoleFig\ConsoleFig\obj\Debug\netcoreapp2.1\ConsoleFig.dll
+C:\Users\Войтович Назарій\source\repos\ConsoleFig\ConsoleFig\obj\Debug\netcoreapp2.1\ConsoleFig.pdb
