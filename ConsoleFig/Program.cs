@@ -1,152 +1,134 @@
-﻿using System;
+﻿using ConsoleFig.Shapes;
+using System;
+using System.Collections.Generic;
 
 namespace ConsoleFig
-{
-    abstract class Figura
-    {
-        public abstract float Area();
-        public abstract float Perimeter();
-    }
-    class Rectangle:Figura
-    {
-        float Width { get; set; }
-        float Height { get; set; }
-        public Rectangle(float width, float height)
-        {
-            this.Width = width;
-            this.Height = height;
-        }
-        public override float Area()
-        {
-            return Width * Height;
-        }
-        public override float Perimeter()
-        {
-            return 2 * Width + 2 * Height;
-        }
-    }
-    class Circle : Figura
-    {
-        float Radius { get; set; }
-        public Circle(float radius)
-        {
-            this.Radius = radius;
-        }
-        public override float Area()
-        {
-            return (float)3.14 * Radius * Radius;
-        }
-        public override float Perimeter()
-        {
-            return 2 * (float)3.14 * Radius;
-        }
-    }
-   
+{   
     class Program
     {
         static void Main(string[] args)
         {
             Console.WriteLine("\t***Figura***");
-
+            List<Circle> circles = new List<Circle>();
+            List<Rectangle> rectangles = new List<Rectangle>();
             while (true)
-            {             
-                int number = MainMenu();
+            {
+                Console.WriteLine("1. Add shape");
+                Console.WriteLine("2. View shapes");
+                Console.WriteLine("3. Remove shape");
+                Console.WriteLine("4. Exit");
+                int choice = Convert.ToInt32(Console.ReadLine());
 
-                switch (number)
+                if(choice == 1)
                 {
-                    case 1:
-                        Console.Clear();
-                        Console.WriteLine("\t***Figura***");
-                        Console.Write("Enter width of the rectangle: ");
-                        float width = Convert.ToSingle(Console.ReadLine());
-                        Console.Write("Enter height of the rectangle: ");
-                        float height = Convert.ToSingle(Console.ReadLine());
-                        Rectangle rec1 = new Rectangle(width, height);
-                       
-                        Console.Clear();
-                        while (true)
+                    Console.Clear();
+                    while (true)
+                    {
+                        
+                        Console.WriteLine("1. Add Circle");
+                        Console.WriteLine("2. Add Rectangle");
+                        Console.WriteLine("3. Exit");
+                        int number = Convert.ToInt32(Console.ReadLine());
+
+                        if (number == 1) 
                         {
-                            int n = read();
-                            if (n == 1)
-                            {
-                                Console.ForegroundColor = ConsoleColor.Green;
-                                Console.WriteLine($"Perimeter rectangle is {rec1.Perimeter()}");
-                                Console.ResetColor();
-                                break;
-                            }
-                            else if (n == 2)
-                            {
-                                Console.ForegroundColor = ConsoleColor.Green;
-                                Console.WriteLine($"Area rectangle is {rec1.Area()}");
-                                Console.ResetColor();
-                                break;
-                            }
-                            else
-                            {
-                                Error();
-                                continue;
-                            }
+                            Console.Clear();
+                            Console.Write("Enter radius circle: ");
+                            double radius = Convert.ToDouble(Console.ReadLine());
+                            circles.Add(new Circle(radius));
+                            continue;
+
+                        }  //add circle 
+                        else if (number == 2) 
+                        {
+                            Console.Clear();
+                            Console.Write("Enter width rectangle: ");
+                            double width = Convert.ToDouble(Console.ReadLine());
+                            Console.Write("Enter height rectangle: ");
+                            double height = Convert.ToDouble(Console.ReadLine());
+                            rectangles.Add(new Rectangle(width, height));
+                            continue;
+                        } // add rectangle
+                        else if (number == 3) { break; } //exit
+
+                        else // error
+                        {
+                            Error(1, 3);
+                            continue;
                         }
-                        return;
+                    }
+                } // Add shape
 
+                else if(choice == 2)
+                {
+                    Console.Clear();
+                    int i = 1;
+                    foreach(Circle c in circles)
+                    {
+                        Console.WriteLine($"Circle {i} area: {c.Area()} lenght: {c.Perimeter()}" );
+                        i++;
+                    }
+                    i = 1;
+                    foreach(Rectangle r in rectangles)
+                    {
+                        Console.WriteLine($"Rectangle {r} area: {r.Area()} Perimeter: {r.Perimeter()}");
+                        i++;
+                    }                                        
+                } // View shapes
 
-                    case 2:
-                        Console.Clear();
-                        Console.WriteLine("\t***Figura***");
-                        Console.Write("Enter radius of the Circle: ");
-                        float radius = Convert.ToSingle(Console.ReadLine());
-                        Circle cir1 = new Circle(radius);
-
-                        Console.Clear();                        
-                        while (true)
-                        {                            
-                            int k = read();
-                            if (k == 1)
-                            {
-                                Console.ForegroundColor = ConsoleColor.Green;
-                                Console.WriteLine($"Perimeter rectangle is {cir1.Perimeter()}");
-                                Console.ResetColor();
-                                break;
-                            }
-                            else if (k == 2)
-                            {
-                                Console.ForegroundColor = ConsoleColor.Green;
-                                Console.WriteLine($"Area rectangle is {cir1.Area()}");
-                                Console.ResetColor();
-                                break;
-                            }
-                            else
-                            {
-                                Error();
-                                continue;
-                            }
+                else if(choice == 3)
+                {                    
+                    Console.WriteLine("1. Circle");
+                    Console.WriteLine("2. Rectangle");
+                    Console.WriteLine("3. Exit");
+                    Console.WriteLine("Enter number shape what you want delete: ");
+                    int number = Convert.ToInt32(Console.ReadLine());
+                    if (number == 1)
+                    {
+                        for (int i = 0; i < circles.Count; i++) 
+                        {
+                            Console.WriteLine($"Circle {i+1} area: {circles[i].Area()} lenght: {circles[i].Perimeter()}");
                         }
-                        return;
-                    default:
-                        Error();
+                        Console.WriteLine("Enter number circle what you want delete: " );
+                        int num = Convert.ToInt32(Console.ReadLine());
+                        circles.RemoveAt(num-1);
+                    }
+                    else if (number == 2)
+                    {
+                        for (int i = 0; i < rectangles.Count; i++)
+                        {
+                            Console.WriteLine($"Rectangle {i+1} area: {circles[i].Area()} Perimeter: {circles[i].Perimeter()}");
+                        }
+                        Console.WriteLine("Enter number rectangle what you want delete: ");
+                        int num = Convert.ToInt32(Console.ReadLine());
+                        rectangles.RemoveAt(num-1);
+                    }
+                    else if(number == 3)
+                    {
                         continue;
+                    }
+                    else
+                    {
+                        Error(1, 3);
+                    }
+                } // Remove shapes
 
-                }
+                else if(choice == 4)
+                {
+                    return;
+                } // Exit
+
+                else
+                {
+                    Error(1, 4);
+                    continue;
+                } // Error
             }
-            int MainMenu()
+
+            void Error(int from, int to)
             {
-                Console.WriteLine("1.Rectangle");
-                Console.WriteLine("2.Circle");
-                Console.Write("\nEnter figure nubmer: ");
-                return Convert.ToInt32(Console.ReadLine());
-            }
-           
-            int read()
-            {
-                Console.WriteLine("1.Perimeter");
-                Console.WriteLine("2.Area");
-                Console.Write("Enter number: ");
-                return Convert.ToInt32(Console.ReadLine());
-            }
-            void Error()
-            {
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("\aError: \"The number should be from 1 to 2\"");
+                Console.BackgroundColor = ConsoleColor.Red;
+                Console.WriteLine($"\a Error: enter number form {from} to {to}");
                 Console.ResetColor();
             }
         }
