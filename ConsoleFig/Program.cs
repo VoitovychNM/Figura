@@ -1,5 +1,6 @@
 ﻿using ConsoleFig.Shapes;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 
 namespace ConsoleFig
@@ -9,8 +10,7 @@ namespace ConsoleFig
         static void Main(string[] args)
         {
             Console.WriteLine("\t***Figura***");
-            List<Circle> circles = new List<Circle>();
-            List<Rectangle> rectangles = new List<Rectangle>();
+            ArrayList shape = new ArrayList();
             while (true)
             {
                 Console.WriteLine("1. Add shape");
@@ -35,7 +35,7 @@ namespace ConsoleFig
                             Console.Clear();
                             Console.Write("Enter radius circle: ");
                             double radius = Convert.ToDouble(Console.ReadLine());
-                            circles.Add(new Circle(radius));
+                            shape.Add(new Circle(radius));
                             continue;
 
                         }  //add circle 
@@ -46,7 +46,7 @@ namespace ConsoleFig
                             double width = Convert.ToDouble(Console.ReadLine());
                             Console.Write("Enter height rectangle: ");
                             double height = Convert.ToDouble(Console.ReadLine());
-                            rectangles.Add(new Rectangle(width, height));
+                            shape.Add(new Rectangle(width, height));
                             continue;
                         } // add rectangle
                         else if (number == 3) { break; } //exit
@@ -63,54 +63,33 @@ namespace ConsoleFig
                 {
                     Console.Clear();
                     int i = 1;
-                    foreach(Circle c in circles)
+                    foreach(Shape s in shape)
                     {
-                        Console.WriteLine($"Circle {i} area: {c.Area()} lenght: {c.Perimeter()}" );
+                        Console.WriteLine($"Circle {i} area: {s.Area()} lenght: {s.Perimeter()}" );
                         i++;
-                    }
-                    i = 1;
-                    foreach(Rectangle r in rectangles)
-                    {
-                        Console.WriteLine($"Rectangle {r} area: {r.Area()} Perimeter: {r.Perimeter()}");
-                        i++;
-                    }                                        
+                    }                                                      
                 } // View shapes
 
                 else if(choice == 3)
-                {                    
-                    Console.WriteLine("1. Circle");
-                    Console.WriteLine("2. Rectangle");
-                    Console.WriteLine("3. Exit");
-                    Console.WriteLine("Enter number shape what you want delete: ");
+                {
+                    Console.Clear();
+                    
+                    
+                    int i = 1;
+                    foreach (Shape s in shape)
+                    {
+                        Console.WriteLine($"Circle {i} area: {s.Area()} lenght: {s.Perimeter()}");
+                        i++;
+                    }
+                    Console.WriteLine("0. Exit");
+                    Console.WriteLine("Enter number shape what you want delete or 0 for exit : " );
                     int number = Convert.ToInt32(Console.ReadLine());
-                    if (number == 1)
-                    {
-                        for (int i = 0; i < circles.Count; i++) 
-                        {
-                            Console.WriteLine($"Circle {i+1} area: {circles[i].Area()} lenght: {circles[i].Perimeter()}");
-                        }
-                        Console.WriteLine("Enter number circle what you want delete: " );
-                        int num = Convert.ToInt32(Console.ReadLine());
-                        circles.RemoveAt(num-1);
-                    }
-                    else if (number == 2)
-                    {
-                        for (int i = 0; i < rectangles.Count; i++)
-                        {
-                            Console.WriteLine($"Rectangle {i+1} area: {circles[i].Area()} Perimeter: {circles[i].Perimeter()}");
-                        }
-                        Console.WriteLine("Enter number rectangle what you want delete: ");
-                        int num = Convert.ToInt32(Console.ReadLine());
-                        rectangles.RemoveAt(num-1);
-                    }
-                    else if(number == 3)
+                    if(number == 0)
                     {
                         continue;
                     }
-                    else
-                    {
-                        Error(1, 3);
-                    }
+                    shape.RemoveAt(number-1);                   
+                 
                 } // Remove shapes
 
                 else if(choice == 4)
